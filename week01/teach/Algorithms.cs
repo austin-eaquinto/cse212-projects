@@ -36,6 +36,7 @@ public static class Algorithms {
     /// </summary>
     /// <param name="size">the amount of work to do</param>
     private static int Algorithm1(int size) {
+        // linear time?
         var count = 0;
         for (var i = 0; i < size; ++i)
             count += 1;

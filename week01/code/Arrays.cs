@@ -1,3 +1,5 @@
+using System.Data;
+
 public static class Arrays
 {
     /// <summary>
@@ -12,9 +14,21 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        double[] lengthArray = new double[length];
 
-        return []; // replace this return statement with your own
+        for (int index = 0; index < length; index++)
+        {
+            lengthArray[index] = number * (index + 1);
+        }
+        return lengthArray; 
     }
+    // We need an array, for loop, and return value.
+    // The array will need to hold the method parameter 'length' to adjust to the length of the multiples list.
+    // The for loop needs to run as long as the index is less than the 'length'.
+    // The array will equal the 'number' multiplied by the index, plus one. This way the multiplication 
+    // factor will increase by one each time the loop is ran (number * 1, number * 2, number * 3...).
+    // The return value will be the array (after it has been used in the for loop).
+
 
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
@@ -29,5 +43,21 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        
+        // 1. split the list using GetRange
+        // 2. insert the last part of the list according to the 'amount' into a new list using RemoveRange
+        // 3. use InsertRange to add the removed section to the front of the new list
+        int dataCount = data.Count;
+        // not needed in this scenario
+        // int dataDivision = amount % dataCount;  // number of rotation places
+
+        List<int> endOfDataRange = data.GetRange(dataCount - amount, amount);
+        data.RemoveRange(dataCount - amount, amount);
+        data.InsertRange(0, endOfDataRange);
     }
+
+
+    // We need a dynamic array for list manipulation.TYFRDEXSZXA
+    // The data list needs to shift all the values in it according to the 'amount'
+    // according to the 'amount' the data in the list will be shifted to display the last numbers, and then the rest of the list
 }
