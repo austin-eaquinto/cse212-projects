@@ -45,6 +45,22 @@ public class TakingTurnsQueue
                 person.Turns -= 1;
                 _people.Enqueue(person);
             }
+            else if (person.Turns == 1)
+            {
+                person.Turns -= 1;
+            }
+            else    // handles the 'forever' entries
+            {
+                if (person.Turns == 0)  // in the case where timTurns is set to 0 in the ForeverZero test file
+                {
+                    person.Turns = 0;
+                }
+                else    // handles the second timTurns variable, in the ForeverNegative test file
+                {
+                    person.Turns = -3;
+                }
+                _people.Enqueue(person); // queues the forever person back in
+            }
 
             return person;
         }

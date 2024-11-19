@@ -12,8 +12,9 @@ public class PersonQueue
     /// </summary>
     /// <param name="person">The person to add</param>
     public void Enqueue(Person person)
-    {
-        _queue.Insert(0, person);
+    {   
+        // _queue.Insert(0, person);    // doesn't work for FIFO because it always adds to the front.
+        _queue.Add(person); // adds to a list traditionally, one item after the other
     }
 
     public Person Dequeue()
