@@ -66,5 +66,10 @@ public class PriorityQueueTests
     {
         var priorityQueue = new PriorityQueue();
         priorityQueue.Dequeue();
+        
+        if (priorityQueue.empty())
+        {
+            
+        }
     }
 }
