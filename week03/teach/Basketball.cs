@@ -11,7 +11,6 @@
  * Each row represents the player's stats for a single season with a single team.
  */
 
-using System.Security;
 using Microsoft.VisualBasic.FileIO;
 
 public class Basketball
@@ -24,7 +23,8 @@ public class Basketball
         reader.TextFieldType = FieldType.Delimited;
         reader.SetDelimiters(",");
         reader.ReadFields(); // ignore header row
-        while (!reader.EndOfData) {
+        while (!reader.EndOfData) 
+        {
             var fields = reader.ReadFields()!;
             var playerId = fields[0];
             var points = int.Parse(fields[8]);
@@ -35,7 +35,7 @@ public class Basketball
             }
             else
             {
-                players.Add(playerId, points);
+                players[playerId] = points;
             }
         }
 
@@ -47,9 +47,7 @@ public class Basketball
 
         for (var i = 0; i < 10; i++)
         {
-            // topPlayers[i] += players.Values.Max();
             Console.WriteLine(topPlayers[i]);
-            
         }
     }
 }
