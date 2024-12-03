@@ -25,6 +25,7 @@ public class Translator
     public void AddWord(string fromWord, string toWord)
     {
         // ADD YOUR CODE HERE
+        _words[fromWord] = toWord; // Dictionary[key] = value;
     }
 
     /// <summary>
@@ -35,6 +36,13 @@ public class Translator
     public string Translate(string fromWord)
     {
         // ADD YOUR CODE HERE
-        return "";
-    }
+        string newWord = "???"; // gives the required value to newWord
+
+        if (_words.ContainsKey(fromWord)) // if the Dictionary does contain the key (fromWord)
+        {
+            newWord = _words[fromWord]; // then newWord = Dictionary[key]
+        }
+        return newWord; // returns either "???" or _words [fromWord]
+    } // because there is no user input and the code is already set in the Run method when it comes to
+      // the 'trains' word (key) it prints "???" as the value
 }

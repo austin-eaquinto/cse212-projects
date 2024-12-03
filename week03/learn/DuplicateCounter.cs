@@ -25,6 +25,20 @@
     private static int CountDuplicates(int[] data)
     {
         // Add code here.
-        return 0;
+        HashSet<int> numberSet = new HashSet<int>(); // initialize the HashSet
+        int duplicates = 0; // initialize duplicates variable
+
+        foreach (int i in data) // foreach item in the data array (which is a fixed array here?)
+        {
+            if (numberSet.Contains(i)) // if the HashSet containsthe item
+            {
+                duplicates++; // count as a duplicate
+            }
+            else
+            {
+                numberSet.Add(i); // add it to the HashSet
+            }
+        }
+        return duplicates; // return the number of duplicates
     }
 }
