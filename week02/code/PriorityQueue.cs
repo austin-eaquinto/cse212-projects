@@ -28,6 +28,7 @@
         {
             if (_queue[index].Priority > _queue[highPriorityIndex].Priority)
                 highPriorityIndex = index;
+            }
         }
 
         // Remove and return the item with the highest priority
