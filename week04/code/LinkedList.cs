@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Transactions;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -59,15 +60,20 @@ public class LinkedList : IEnumerable<int>
         // cover an empty list.  Its okay to set to null again.
         if (_head == _tail)
         {
-            _head = null;
+            _head = null; // *** removes 2 here. need to remove 1.
             _tail = null;
         }
         // If the list has more than one item in it, then only the head
         // will be affected.
         else if (_head is not null)
         {
-            _head.Next!.Prev = null; // Disconnect the second node from the first node
-            _head = _head.Next; // Update the head to point to the second node
+            _head = _head.Next;
+            if (_head != null)
+            {
+                _head.Prev = null;
+            }
+            // _head.Next!.Prev = null; // Disconnect the second node from the first node
+            // _head = _head.Next; // Update the head to point to the second node
         }
     }
 
@@ -134,7 +140,6 @@ public class LinkedList : IEnumerable<int>
         // TODO Problem 3
         // in a forward fashion (head to tail)
         var current = _head;
-
         Node? curr = _head;
 
         while (curr is not null)
@@ -145,12 +150,13 @@ public class LinkedList : IEnumerable<int>
                 {
                     RemoveHead();
                 }
-                if (curr == _tail)
+                else if (curr == _tail)
                 {
                     RemoveTail();
                 }
                 else
                 {
+                    //
                     curr.Prev!.Next = curr.Next;
                     curr.Next!.Prev = curr.Prev;
                 }
@@ -158,17 +164,6 @@ public class LinkedList : IEnumerable<int>
             }
             curr = curr.Next;
         }
-
-        // while (current != null)
-        // {
-        //     if (current.Value ==value)
-        //     {
-        //         current.Next.Prev = current.Prev;
-        //         current.Prev.Next = current.Next;
-        //     }
-
-        //     current = current.Next; // goes to the next node in the list
-        // }
     }
 
     /// <summary>
@@ -183,7 +178,7 @@ public class LinkedList : IEnumerable<int>
         {
             if (curr.Data == oldValue)
             {
-                
+                curr.Data = newValue;
             }
             curr = curr.Next;
         }
