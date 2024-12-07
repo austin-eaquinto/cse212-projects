@@ -15,6 +15,7 @@ public static class Recursion
     public static int SumSquaresRecursive(int n)
     {
         // TODO Start Problem 1
+
         return 0;
     }
 
@@ -97,6 +98,7 @@ public static class Recursion
             return 4;
 
         // TODO Start Problem 3
+            // implement a dictionary? the 'remember' parameter is a dictionary
 
         // Solve using recursion
         decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
