@@ -132,6 +132,7 @@ public class LinkedList : IEnumerable<int>
     public void Remove(int value)
     {
         // TODO Problem 3
+        // in a forward fashion (head to tail)
         var current = _head;
 
         Node? curr = _head;
@@ -155,8 +156,19 @@ public class LinkedList : IEnumerable<int>
                 }
                 return;
             }
-            curr = curr.Next; 
+            curr = curr.Next;
         }
+
+        // while (current != null)
+        // {
+        //     if (current.Value ==value)
+        //     {
+        //         current.Next.Prev = current.Prev;
+        //         current.Prev.Next = current.Next;
+        //     }
+
+        //     current = current.Next; // goes to the next node in the list
+        // }
     }
 
     /// <summary>
@@ -171,7 +183,7 @@ public class LinkedList : IEnumerable<int>
         {
             if (curr.Data == oldValue)
             {
-
+                
             }
             curr = curr.Next;
         }

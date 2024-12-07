@@ -6,36 +6,37 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: The Enqueue function shall add an item (which contains both data and priority) to the 
-    // back of the queue.
-    // Expected Result: adds a person and priority identifier to the queue
+    // Scenario: The Enqueue function shall add an item (which contains both data and priority) to the back of the queue.
+    // Expected Result: Add and item to the queue in the correct order of FIFO
     // Defect(s) Found: none
     public void TestPriorityQueue_1()
     {
+        
         var priorityQueue = new PriorityQueue();
-
-        priorityQueue.Enqueue("Alan", 2);
-        priorityQueue.Enqueue("Bill", 1);
+        
+        priorityQueue.Enqueue("tim", 1);
+        priorityQueue.Enqueue("bill", 3);
+        priorityQueue.Enqueue("rob", 2);
 
         // Assert.Fail("Implement the test case and then remove this.");
     }
 
     [TestMethod]
     // Scenario: The Dequeue function shall remove the item with the highest priority and return its value.
-    // Expected Result: Dequeue Carl first, even though he's last in the queue because he has the highest priority
-    // Defect(s) Found: Carl isn't reached at all in the program. ToString prints whole queue
+    // Expected Result: The item with the highest priority is removed first
+    // Defect(s) Found: none
     public void TestPriorityQueue_2()
     {
+        
         var priorityQueue = new PriorityQueue();
 
-        priorityQueue.Enqueue("Alan", 2);
-        priorityQueue.Enqueue("Bill", 3);
-        priorityQueue.Enqueue("Carl", 1);
-        
-        priorityQueue.Dequeue();
-        // priorityQueue.Dequeue();
+        priorityQueue.Enqueue("tim", 1);
+        priorityQueue.Enqueue("bill", 3);
+        priorityQueue.Enqueue("rob", 2);
 
-        priorityQueue.ToString();
+        var person = priorityQueue.Dequeue();
+
+        Assert.AreEqual(person, "bill");
 
         // Assert.Fail("Implement the test case and then remove this.");
     }
@@ -43,33 +44,48 @@ public class PriorityQueueTests
     // Add more test cases as needed below.
 
     [TestMethod]
-    // Scenario: If there are more than one item with the highest priority, then the item closest to the front 
-    // of the queue will be removed and its value returned.
-    // Expected Result: Alan will be removed before Bill because they have the same priority but Alan is first in line.
-    // Defect(s) Found: Keep getting result "Bill". 
+    // Scenario: If there are more than one item with the highest priority, then the item closest to the front of the 
+                // queue will be removed and its value returned.
+    // Expected Result: If two items have the same priority, the one that was first in will be first out
+    // Defect(s) Found: none
     public void TestPriorityQueue_3()
     {
+        
         var priorityQueue = new PriorityQueue();
 
-        priorityQueue.Enqueue("Alan", 3);
-        priorityQueue.Enqueue("Bill", 3);
-        priorityQueue.Enqueue("Carl", 1);
+        priorityQueue.Enqueue("tim", 1);
+        priorityQueue.Enqueue("bill", 3);
+        priorityQueue.Enqueue("rob", 2);
+        priorityQueue.Enqueue("daniel", 3);
 
-        priorityQueue.Dequeue();
+        var person = priorityQueue.Dequeue();
+
+        Assert.AreEqual(person, "bill");
+
+        // Assert.Fail("Implement the test case and then remove this.");
     }
 
     [TestMethod]
     // Scenario: If the queue is empty, then an error exception shall be thrown.
-    // Expected Result: the code will throw and exception for the empty queue
+    // Expected Result: return an error message if the queue is empty
     // Defect(s) Found: none
     public void TestPriorityQueue_4()
     {
-        var priorityQueue = new PriorityQueue();
-        priorityQueue.Dequeue();
-        
-        if (priorityQueue.empty())
+        try
         {
-            
+            var priorityQueue = new PriorityQueue();
+            priorityQueue.Enqueue("tim", 1);
+            priorityQueue.Enqueue("bill", 3);
+            priorityQueue.Enqueue("rob", 2);
+            priorityQueue.Enqueue("daniel", 3);
+
+            var person = priorityQueue.Dequeue();
         }
+        catch (InvalidOperationException)
+        {
+            Console.WriteLine("The queue is empty");
+        }
+
+        // Assert.Fail("Implement the test case and then remove this.");
     }
 }

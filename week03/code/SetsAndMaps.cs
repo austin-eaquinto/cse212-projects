@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.VisualStudio.TestPlatform.CoreUtilities.Extensions;
 
 public static class SetsAndMaps
 {
@@ -22,18 +23,22 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        HashSet<string> pairs = new HashSet<string>();
-        List<string> strings = new List<string>();
+        HashSet<string> seenWords = new HashSet<string>();
+        List<string> pairs = new List<string>();
 
-        foreach (string i in words) // add to the HashSet
+        foreach (string i in words) // check the HashSet for reversed strings
         {
-            // string reverse = new string(i.Reverse().ToArray());
-            if ()
+
+            string reverse = new string(i.Reverse().ToArray());
+
+            if (seenWords.Contains(reverse))
             {
-                
+                pairs.Add($"{i} & {reverse}");
             }
+
+            seenWords.Add(i);
         }
-        return [];
+        return pairs.ToArray();
     }
 
     /// <summary>
@@ -54,8 +59,14 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
-        }
 
+            int value = 1;
+
+            if (!degrees.TryAdd(fields[3], value))
+            {
+                degrees[fields[3]]++; // counts the number of "(degree name)" and adds it to itself
+            }
+        }
         return degrees;
     }
 
@@ -78,7 +89,38 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> Letters(string word) // Letters() method
+        {
+            Dictionary<char, int> letterCount = new Dictionary<char, int>(); // Dictionary
+            word = word.ToLower(); // supposed to change all the letters in a word to lowercase
+            
+            foreach (char letter in word)
+            {
+                if (letterCount.ContainsKey(letter)) // if the Dictionary contains the key of 'letter'
+                {
+                    letterCount[letter]++; // add it to the count of that letter
+                }
+                else // set the count to 1
+                {
+                    letterCount[letter] = 1;
+                }
+            }
+            return letterCount; // the Dictionary that keeps track of the amount of each letter
+        }
+
+        if (word1.Length != word2.Length) return false;
+
+        // call the Letters() method with the parameters set in the IsAnagram() method
+        var word1count = Letters(word1);
+        var word2count = Letters(word2);
+
+        foreach (var kvp in word1count)
+        {
+            if (!word2count.ContainsKey(kvp.Key)) return false;
+            if (kvp.Value != word2count[kvp.Key]) return false;
+        }
+        
+        return true;
     }
 
     /// <summary>
