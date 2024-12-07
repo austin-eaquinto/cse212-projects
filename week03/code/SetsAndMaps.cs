@@ -96,6 +96,8 @@ public static class SetsAndMaps
             
             foreach (char letter in word)
             {
+                if (letter == ' ') continue; // or try to take the spaces out first
+
                 if (letterCount.ContainsKey(letter)) // if the Dictionary contains the key of 'letter'
                 {
                     letterCount[letter]++; // add it to the count of that letter
@@ -107,8 +109,6 @@ public static class SetsAndMaps
             }
             return letterCount; // the Dictionary that keeps track of the amount of each letter
         }
-
-        if (word1.Length != word2.Length) return false;
 
         // call the Letters() method with the parameters set in the IsAnagram() method
         var word1count = Letters(word1);
