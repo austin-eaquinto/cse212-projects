@@ -1,4 +1,6 @@
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using System.IO.Compression;
 
 public static class Recursion
 {
@@ -16,7 +18,14 @@ public static class Recursion
     {
         // TODO Start Problem 1
 
-        return 0;
+        if (n == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return n * n + SumSquaresRecursive(n - 1);
+        }
     }
 
     /// <summary>
@@ -41,6 +50,23 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
+
+        // if (letters.Length == size)
+        // {
+        //     // Console.WriteLine(word);
+        //     results.Add(word);
+        //     return;
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < letters.Length; i++)
+        //     {
+                
+
+        //         PermutationsChoose(results, letters, size, word + letters[i]);
+        //     }
+        //     Console.WriteLine(results);
+        // }
     }
 
     /// <summary>

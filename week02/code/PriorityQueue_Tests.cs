@@ -80,10 +80,13 @@ public class PriorityQueueTests
             priorityQueue.Enqueue("daniel", 3);
 
             var person = priorityQueue.Dequeue();
+            Assert.Fail("It failed");
+
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException e)
         {
-            Console.WriteLine("The queue is empty");
+            // Console.WriteLine("The queue is empty");
+            Assert.AreEqual("The queue is empty", e.Message, "The exception message was incorrect");
         }
 
         // Assert.Fail("Implement the test case and then remove this.");
