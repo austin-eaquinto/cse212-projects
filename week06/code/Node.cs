@@ -38,13 +38,28 @@ public class Node
         {
             return true;
         }
+        else if (value < Data && Left != null)
+        {
+            return Left.Contains(value);
+        }
+        else if (value > Data && Right != null)
+        {
+            return Right.Contains(value);
+        }
         else
-        return false;
+        {
+            return false;
+        }
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
+        
+        // GetHeight.height(Right);
+
+        // (Right + 1)
+
         return 0; // Replace this line with the correct return statement(s)
     }
 }
