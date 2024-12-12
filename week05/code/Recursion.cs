@@ -51,22 +51,19 @@ public static class Recursion
     {
         // TODO Start Problem 2
 
-        // if (letters.Length == size)
-        // {
-        //     // Console.WriteLine(word);
-        //     results.Add(word);
-        //     return;
-        // }
-        // else
-        // {
-        //     for (int i = 0; i < letters.Length; i++)
-        //     {
-                
-
-        //         PermutationsChoose(results, letters, size, word + letters[i]);
-        //     }
-        //     Console.WriteLine(results);
-        // }
+        if (word.Length == size)
+        {
+            results.Add(word);
+        }
+        else
+        {
+            for (int i = 0; i < letters.Length; i++)
+            {    
+                var lettersLeft = letters.Remove(i, 1);
+                PermutationsChoose(results, lettersLeft, size, word + letters[i]);
+            }
+            Console.WriteLine(results);
+        }
     }
 
     /// <summary>
@@ -147,6 +144,7 @@ public static class Recursion
     public static void WildcardBinary(string pattern, List<string> results)
     {
         // TODO Start Problem 4
+        
     }
 
     /// <summary>
