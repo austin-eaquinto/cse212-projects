@@ -1,6 +1,7 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.IO.Compression;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class Recursion
 {
@@ -122,9 +123,22 @@ public static class Recursion
 
         // TODO Start Problem 3
             // implement a dictionary? the 'remember' parameter is a dictionary
+            if (remember == null)
+            {
+                remember = new Dictionary<int, decimal>();
+            }
+            if (s <=2)
+            {
+                return 1;
+            }
+            if (remember.ContainsKey(s))
+            {
+                return remember[s];
+            }
 
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+        remember[s] = ways;
         return ways;
     }
 
